@@ -1,0 +1,32 @@
+<h1>Listing Balances</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Icon</th>
+      <th>Owner</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for balance <- @balances do %>
+    <tr>
+      <td><%= balance.name %></td>
+      <td><%= balance.description %></td>
+      <td><%= balance.icon %></td>
+      <td><%= balance.owner %></td>
+
+      <td>
+        <%= link "Show", to: Routes.balance_path(@conn, :show, balance) %>
+        <%= link "Edit", to: Routes.balance_path(@conn, :edit, balance) %>
+        <%= link "Delete", to: Routes.balance_path(@conn, :delete, balance), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Balance", to: Routes.balance_path(@conn, :new) %></span>

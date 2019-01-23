@@ -19,6 +19,9 @@ defmodule DrakolisWeb.Router do
     get "/", PageController, :index
     get "/hello", HelloController, :index
     get "/hello/:messenger", HelloController, :show
+    resources "/budget/balances", BalanceController
+    resources "/budget/categories", CategoryController
+    resources "/budget/operations", OperationController
   end
 
   # Other scopes may use custom stacks.
