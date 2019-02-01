@@ -45,7 +45,7 @@ defmodule DrakolisWeb.UserController do
     end
   end
 
-  def sign_in(conn, %{"email" => email, "password" => password}) do
+  def signIn(conn, %{"email" => email, "password" => password}) do
     case Accounts.token_sign_in(email, password) do
       {:ok, token, _claims} ->
         conn |> render("jwt.json", jwt: token)

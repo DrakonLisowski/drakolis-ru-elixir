@@ -12,7 +12,7 @@ defmodule DrakolisWeb.Router do
     pipe_through :api
 
     post "/signUp", UserController, :create
-    post "/signIn", UserController, :sign_in
+    post "/signIn", UserController, :signIn
   end
 
   scope "/api/v1", DrakolisWeb do
