@@ -13,8 +13,8 @@ config :drakolis,
 # Configures the endpoint
 config :drakolis, DrakolisWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "lLUvWjxUclfCwBQ9tWXRVO7C59N5cFvPi1LZqesQn21UUUn8XGKKTqBeh9ewsnPA",
-  render_errors: [view: DrakolisWeb.ErrorView, accepts: ~w(html json)],
+  secret_key_base: "rJ37YFRQ8Cc5RLD1kqUmxrjyoputIkkqtbAro/faB6xlVcIJw9DjbbYv6tmZ11Qp",
+  render_errors: [view: DrakolisWeb.ErrorView, accepts: ~w(json)],
   pubsub: [name: Drakolis.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
