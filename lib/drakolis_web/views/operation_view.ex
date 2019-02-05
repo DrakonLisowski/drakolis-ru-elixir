@@ -14,6 +14,8 @@ defmodule DrakolisWeb.OperationView do
     %{id: operation.id,
       name: operation.name,
       sum: operation.sum,
-      date: operation.date}
+      date: operation.date,
+      categoryId: operation.categoryId,
+      ownerId: operation.ownerId}
   end
 end
