@@ -40,5 +40,7 @@ defmodule DrakolisWeb.Endpoint do
     key: "_drakolis_key",
     signing_salt: "Uan5+YUh"
 
+  plug CORSPlug, origin: "*"
+
   plug DrakolisWeb.Router
 end
