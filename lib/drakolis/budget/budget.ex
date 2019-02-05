@@ -7,7 +7,9 @@ defmodule Drakolis.Budget do
   alias Drakolis.Repo
 
   alias Drakolis.Budget.Account
+  alias Drakolis.Budget.Operation
 
+  import Ecto.Query, only: [from: 2, join: 5]
   @doc """
   Returns the list of accounts.
 
@@ -17,8 +19,17 @@ defmodule Drakolis.Budget do
       [%Account{}, ...]
 
   """
+  def accounts_query do
+    from a in Account,
+      left_join: o in Operation,
+      on: [accountId: a.id],
+      select: %{id: a.id, name: a.name, ownerId: a.ownerId, currency: a.currency, balance:
+      sum(o.sum) |> coalesce(0)},
+      group_by: a.id
+  end
+
   def list_accounts do
-    Repo.all(Account)
+    Repo.all(accounts_query)
   end
 
   @doc """
@@ -35,7 +46,9 @@ defmodule Drakolis.Budget do
       ** (Ecto.NoResultsError)
 
   """
-  def get_account!(id), do: Repo.get!(Account, id)
+  def get_account!(id) do
+    Repo.get(accounts_query, id)
+  end
 
   @doc """
   Creates a account.
@@ -198,8 +211,6 @@ defmodule Drakolis.Budget do
     Category.changeset(category, %{})
   end
 
-  alias Drakolis.Budget.Operation
-
   @doc """
   Returns the list of operations.
 
@@ -228,6 +239,8 @@ defmodule Drakolis.Budget do
 
   """
   def get_operation!(id), do: Repo.get!(Operation, id)
+
+  def get_operation_by_account!(accountId), do: Repo.get_by!(Operation, accountId: accountId)
 
   @doc """
   Creates a operation.

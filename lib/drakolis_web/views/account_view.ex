@@ -13,6 +13,8 @@ defmodule DrakolisWeb.AccountView do
   def render("account.json", %{account: account}) do
     %{id: account.id,
       name: account.name,
-      currency: account.currency}
+      currency: account.currency,
+      balance: account.balance
+    }
   end
 end
