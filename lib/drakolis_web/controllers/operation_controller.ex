@@ -11,6 +11,11 @@ defmodule DrakolisWeb.OperationController do
     render(conn, "index.json", operations: operations)
   end
 
+  def index_by_account(conn, %{"accountId" => id}) do
+    operations = Budget.list_operations_by_account(id)
+    render(conn, "index.json", operations: operations)
+  end
+
   def create(conn, %{"operation" => operation_params}) do
     with {:ok, %Operation{} = operation} <- Budget.create_operation(operation_params) do
       conn

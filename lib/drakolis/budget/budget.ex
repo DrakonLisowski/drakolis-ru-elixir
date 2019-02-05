@@ -224,6 +224,10 @@ defmodule Drakolis.Budget do
     Repo.all(Operation)
   end
 
+  def list_operations_by_account(accountId) do
+    Repo.all(from o in Operation, where: o.accountId == ^accountId )
+  end
+
   @doc """
   Gets a single operation.
 
@@ -239,8 +243,6 @@ defmodule Drakolis.Budget do
 
   """
   def get_operation!(id), do: Repo.get!(Operation, id)
-
-  def get_operation_by_account!(accountId), do: Repo.get_by!(Operation, accountId: accountId)
 
   @doc """
   Creates a operation.

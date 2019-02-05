@@ -23,5 +23,6 @@ defmodule DrakolisWeb.Router do
     resources "/budget/accounts", AccountController, except: [:new, :edit]
     resources "/budget/categories", CategoryController, except: [:new, :edit]
     resources "/budget/operations", OperationController, except: [:new, :edit]
+    get "/budget/accounts/:accountId/operations", OperationController, :index_by_account
   end
 end
