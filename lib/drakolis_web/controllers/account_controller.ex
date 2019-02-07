@@ -34,7 +34,7 @@ defmodule DrakolisWeb.AccountController do
   end
 
   def delete(conn, %{"id" => id}) do
-    account = Budget.get_account!(id)
+    account = Budget.get_account_object!(id)
 
     with {:ok, %Account{}} <- Budget.delete_account(account) do
       send_resp(conn, :no_content, "")

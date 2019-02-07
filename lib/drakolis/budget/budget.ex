@@ -25,7 +25,8 @@ defmodule Drakolis.Budget do
       on: [accountId: a.id],
       select: %{id: a.id, name: a.name, ownerId: a.ownerId, currency: a.currency, balance:
       sum(o.sum) |> coalesce(0)},
-      group_by: a.id
+      group_by: a.id,
+      order_by: a.id
   end
 
   def list_accounts do
@@ -48,6 +49,10 @@ defmodule Drakolis.Budget do
   """
   def get_account!(id) do
     Repo.get(accounts_query, id)
+  end
+
+  def get_account_object!(id) do
+    Repo.get!(Account, id)
   end
 
   @doc """
