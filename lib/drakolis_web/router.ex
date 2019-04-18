@@ -24,5 +24,12 @@ defmodule DrakolisWeb.Router do
     resources "/budget/categories", CategoryController, except: [:new, :edit]
     resources "/budget/operations", OperationController, except: [:new, :edit]
     get "/budget/accounts/:accountId/operations", OperationController, :index_by_account
+    resources "/settings", SettingController, except: [:new, :edit]
+  end
+
+  scope "/api/external", DrakolisWeb do
+    pipe_through [:api]
+
+    get "/lastfm/:user/recent", ExternalApiController, :lastfm_recent
   end
 end

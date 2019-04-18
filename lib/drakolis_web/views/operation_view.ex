@@ -11,11 +11,13 @@ defmodule DrakolisWeb.OperationView do
   end
 
   def render("operation.json", %{operation: operation}) do
-    %{id: operation.id,
+    %{
+      id: operation.id,
       name: operation.name,
       sum: operation.sum,
       date: operation.date,
       categoryId: operation.categoryId,
-      ownerId: operation.ownerId}
+      ownerId: operation.ownerId
+    }
   end
 end

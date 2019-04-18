@@ -46,7 +46,9 @@ defmodule Drakolis.MixProject do
       {:bcrypt_elixir, "~> 1.0"},
       {:guardian, "~> 1.0"},
 
-      {:cors_plug, "~> 1.5"}
+      {:cors_plug, "~> 1.5"},
+      {:httpoison, "~> 1.4"},
+      {:poison, "~> 3.1"}
     ]
   end
 
