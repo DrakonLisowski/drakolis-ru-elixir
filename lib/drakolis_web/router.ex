@@ -24,8 +24,8 @@ defmodule DrakolisWeb.Router do
     resources "/budget/categories", CategoryController, except: [:new, :edit]
     resources "/budget/operations", OperationController, except: [:new, :edit]
     get "/budget/accounts/:accountId/operations", OperationController, :index_by_account
-    resources "/settings", SettingController, except: [:show]
-    get "/settings/:key", SettingController, :get_by_key
+    resources "/settings", SettingController, except: [:show, :new, :edit]
+    get "/settings/:key", SettingController, :show_by_key
   end
 
   scope "/api/v1/external", DrakolisWeb do

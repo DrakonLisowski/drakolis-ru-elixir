@@ -15,7 +15,7 @@ defmodule DrakolisWeb.SettingController do
     with {:ok, %Setting{} = setting} <- Settings.create_setting(setting_params) do
       conn
       |> put_status(:created)
-      |> put_resp_header("location", Routes.setting_path(conn, :show, setting))
+      |> put_resp_header("location", Routes.setting_path(conn, :show_by_key, setting))
       |> render("show.json", setting: setting)
     end
   end
@@ -25,7 +25,7 @@ defmodule DrakolisWeb.SettingController do
     render(conn, "show.json", setting: setting)
   end
 
-  def get_by_key(conn, %{"key" => key}) do
+  def show_by_key(conn, %{"key" => key}) do
     setting = Settings.get_setting_by_key(key)
     render(conn, "show.json", setting: setting)
   end
