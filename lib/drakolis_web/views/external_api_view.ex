@@ -2,9 +2,9 @@ defmodule DrakolisWeb.ExternalApiView do
   use DrakolisWeb, :view
   alias DrakolisWeb.ExternalApiView
 
-  def render("lastfm_recent.json", %{resp: resp}) do
+  def render("lastfm_tracks.json", %{tracks: tracks}) do
     %{
-      recent: resp["recenttracks"]["track"]
+      tracks: tracks["track"]
     }
   end
 end

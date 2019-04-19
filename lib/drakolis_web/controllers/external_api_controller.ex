@@ -10,11 +10,19 @@ defmodule DrakolisWeb.ExternalApiController do
     setting = Settings.get_setting_by_key("lasftm.key").string
   end
 
-  def lastfm_recent(conn, %{"user" => user}) do
-    url = "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=#{user}&limit=10&api_key=#{api_key}&format=json"
-
+  defp proxy_request_lastfm(url) do
     response = HTTPoison.get!(url)
     req = Poison.decode!(response.body)
-    render(conn, "lastfm_recent.json", resp: req)
+    render(conn, "lastfm_tracks.json", tracks: req["recenttracks"])
+  end
+
+  def lastfm_recent(conn, %{"user" => user}) do
+    url = "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=#{user}&limit=10&api_key=#{api_key}&format=json"
+    proxy_request_lastfm(url)
+  end
+
+  def lastfm_loved(conn, %{"user" => user}) do
+    url = "http://ws.audioscrobbler.com/2.0/?method=user.getlovedtracks&user=#{user}&limit=10&api_key=#{api_key}&format=json"
+    proxy_request_lastfm(url)
   end
 end

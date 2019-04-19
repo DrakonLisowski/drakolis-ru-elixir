@@ -27,9 +27,11 @@ defmodule DrakolisWeb.Router do
     resources "/settings", SettingController, except: [:new, :edit]
   end
 
-  scope "/api/external", DrakolisWeb do
+  scope "/api/v1/external", DrakolisWeb do
     pipe_through [:api]
 
     get "/lastfm/:user/recent", ExternalApiController, :lastfm_recent
+    get "/lastfm/:user/loved", ExternalApiController, :lastfm_recent
   end
+
 end
