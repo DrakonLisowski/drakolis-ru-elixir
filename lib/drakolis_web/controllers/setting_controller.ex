@@ -25,6 +25,11 @@ defmodule DrakolisWeb.SettingController do
     render(conn, "show.json", setting: setting)
   end
 
+  def get_by_key(conn, %{"key" => key}) do
+    setting = Settings.get_setting_by_key(key)
+    render(conn, "show.json", setting: setting)
+  end
+
   def update(conn, %{"id" => id, "setting" => setting_params}) do
     setting = Settings.get_setting!(id)
 

@@ -4,7 +4,7 @@ defmodule Drakolis.Settings.Setting do
 
 
   schema "settings" do
-    field :boolean, :boolean, default: false
+    field :boolean, :boolean, default: nil
     field :datetime, :utc_datetime
     field :float, :float
     field :integer, :integer

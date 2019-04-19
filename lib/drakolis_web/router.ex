@@ -24,14 +24,15 @@ defmodule DrakolisWeb.Router do
     resources "/budget/categories", CategoryController, except: [:new, :edit]
     resources "/budget/operations", OperationController, except: [:new, :edit]
     get "/budget/accounts/:accountId/operations", OperationController, :index_by_account
-    resources "/settings", SettingController, except: [:new, :edit]
+    resources "/settings", SettingController, except: [:show]
+    get "/settings/:key", SettingController, :get_by_key
   end
 
   scope "/api/v1/external", DrakolisWeb do
     pipe_through [:api]
 
     get "/lastfm/:user/recent", ExternalApiController, :lastfm_recent
-    get "/lastfm/:user/loved", ExternalApiController, :lastfm_recent
+    get "/lastfm/:user/loved", ExternalApiController, :lastfm_loved
   end
 
 end
