@@ -31,7 +31,7 @@ defmodule DrakolisWeb.Router do
     get "/budget/accounts/:accountId/operations", OperationController, :index_by_account
 
     # Settings
-    resources "/settings", SettingController, except: [:show, :new, :edit]
+    resources "/settings", SettingController, except: [:show, :new, :edit, :delete]
     get "/settings/:key", SettingController, :show_by_key
   end
 
