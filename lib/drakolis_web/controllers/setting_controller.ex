@@ -6,6 +6,11 @@ defmodule DrakolisWeb.SettingController do
 
   action_fallback DrakolisWeb.FallbackController
 
+  def index_public(conn, _params) do
+    settings = Settings.list_settings_public()
+    render(conn, "index_public.json", settings: settings)
+  end
+
   def index(conn, _params) do
     settings = Settings.list_settings()
     render(conn, "index.json", settings: settings)

@@ -21,6 +21,14 @@ defmodule Drakolis.Settings do
     Repo.all(Setting)
   end
 
+  def list_settings_public do
+    Repo.all(
+      from s in Setting,
+      select: %{key: s.key, boolean: s.boolean, datetime: s.datetime, float: s.float, integer: s.integer, string: s.string},
+      where: s.private == false
+    )
+  end
+
   @doc """
   Gets a single setting.
 

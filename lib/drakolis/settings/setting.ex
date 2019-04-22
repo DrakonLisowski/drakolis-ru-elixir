@@ -10,6 +10,7 @@ defmodule Drakolis.Settings.Setting do
     field :integer, :integer
     field :key, :string
     field :string, :string
+    field :private, :boolean, default: true
 
     timestamps()
   end
@@ -17,8 +18,8 @@ defmodule Drakolis.Settings.Setting do
   @doc false
   def changeset(setting, attrs) do
     setting
-    |> cast(attrs, [:key, :string, :boolean, :integer, :float, :datetime])
-    |> validate_required([:key])
+    |> cast(attrs, [:key, :string, :boolean, :integer, :float, :datetime, :private])
+    |> validate_required([:key, :private])
     |> validate_required_inclusion([:string, :boolean, :integer, :float, :datetime])
     |> unique_constraint(:key)
   end
