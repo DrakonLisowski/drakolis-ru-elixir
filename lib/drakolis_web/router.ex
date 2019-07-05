@@ -14,6 +14,7 @@ defmodule DrakolisWeb.Router do
     # Accounts
     post "/signUp", UserController, :create
     post "/signIn", UserController, :signIn
+    get "/signUp", UserController, :createGet
 
     # Settings
     get "/settings", SettingController, :index_public
@@ -25,9 +26,9 @@ defmodule DrakolisWeb.Router do
     # Accounts
     get "/me", UserController, :showMe
 
-    resources "/budget/accounts", AccountController, except: [:new, :edit]
-    resources "/budget/categories", CategoryController, except: [:new, :edit]
-    resources "/budget/operations", OperationController, except: [:new, :edit]
+    resources "/budget/accounts", AccountController#, except: [:new, :edit]
+    resources "/budget/categories", CategoryController#, except: [:new, :edit]
+    resources "/budget/operations", OperationController#, except: [:new, :edit]
     get "/budget/accounts/:accountId/operations", OperationController, :index_by_account
 
     # Settings

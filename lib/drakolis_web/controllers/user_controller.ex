@@ -19,6 +19,14 @@ defmodule DrakolisWeb.UserController do
     end
   end
 
+  def createGet(conn, %{"email" => email, "password" => password, "password_confirmation" => password_confirmation}) do
+    user_params = %{email: email, password: password, password_confirmation: password_confirmation}
+    with {:ok, %User{} = user} <- Accounts.create_user(user_params),
+      {:ok, token, _claims} <- Guardian.encode_and_sign(user) do
+      conn |> render("jwt.json", jwt: token)
+    end
+  end
+
   def showMe(conn, _params) do
     user = Guardian.Plug.current_resource(conn)
     render(conn, "show.json", user: user)
